@@ -8,12 +8,15 @@ public class playerPlatformerController : physicsObject {
     public float jumpTakeOffSpeed = 15;
 
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    Animator animator;
 
     // Use this for initialization
     void Awake () {
         spriteRenderer = GetComponent<SpriteRenderer> ();
-	}
+
+        animator = GetComponent<Animator>();
+    }
+
 
     protected override void ComputeVelocity()
     {
@@ -42,8 +45,14 @@ public class playerPlatformerController : physicsObject {
         targetVelocity = move * maxWalkSpeed;
 
         animator.SetBool("grounded", grounded);
-        animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxWalkSpeed);
+        animator.SetBool("onWall", onWall);
 
+        animator.SetFloat("velocityY", velocity.y);
+
+        animator.SetBool("isJumpInput", Input.GetButtonDown("Jump"));
+
+        animator.SetFloat("isMotionInput", Mathf.Abs(Input.GetAxis("Horizontal")));
+        animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxWalkSpeed);
 
         targetVelocity = move * maxWalkSpeed;
     }

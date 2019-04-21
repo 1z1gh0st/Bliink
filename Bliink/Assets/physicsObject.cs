@@ -8,12 +8,14 @@ public class physicsObject : MonoBehaviour {
 
     public float gravityModifier = 1f;
     public float minGroundNormalY = .65f;
+    public float minWallNormalX = .65f;
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
     protected Vector2 targetVelocity;
     protected Vector2 groundNormal;
+    protected bool onWall;
     protected bool grounded;
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
@@ -100,7 +102,6 @@ public class physicsObject : MonoBehaviour {
                         currentNormal.x = 0;
                     }
                 }
-
                 float projection = Vector2.Dot(velocity, currentNormal);
                 if (projection < 0)
                 {
