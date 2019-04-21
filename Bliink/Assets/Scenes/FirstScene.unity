@@ -265,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityModifier: 5
   minGroundNormalY: 0.65
+  minWallNormalX: 0.65
   maxWalkSpeed: 6
   jumpTakeOffSpeed: 15
 --- !u!1 &848748054
@@ -335,13 +336,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848748054}
-  m_LocalRotation: {x: -0, y: -0, z: 0.12052743, w: 0.99271}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2918696, w: 0.95645815}
   m_LocalPosition: {x: -0.183, y: -2.648, z: 0}
   m_LocalScale: {x: 11.586212, y: 0.6138284, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 33.940002}
 --- !u!61 &848748057
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityModifier: 1
   minGroundNormalY: 0.65
+  minWallNormalX: 0.65
 --- !u!50 &1584202016
 Rigidbody2D:
   serializedVersion: 4

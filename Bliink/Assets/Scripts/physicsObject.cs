@@ -15,8 +15,10 @@ public class physicsObject : MonoBehaviour {
 
     protected Vector2 targetVelocity;
     protected Vector2 groundNormal;
+
     protected bool onWall;
     protected bool grounded;
+
     protected Rigidbody2D rb2d;
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
@@ -64,6 +66,8 @@ public class physicsObject : MonoBehaviour {
 
         grounded = false;
 
+        onWall = false;
+
         Vector2 deltaPosition = velocity * Time.deltaTime;
 
         Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
@@ -105,6 +109,7 @@ public class physicsObject : MonoBehaviour {
                 float projection = Vector2.Dot(velocity, currentNormal);
                 if (projection < 0)
                 {
+                    onWall = true;
                     velocity = velocity - projection * currentNormal;
                 }
 

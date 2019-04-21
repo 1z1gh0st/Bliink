@@ -24,7 +24,7 @@ public class playerPlatformerController : physicsObject {
 
         move.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && (grounded || onWall))
         {
             velocity.y = jumpTakeOffSpeed;
         }
@@ -35,6 +35,7 @@ public class playerPlatformerController : physicsObject {
                 velocity.y *= .5f;
             }
         }
+
 
         bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.0f) : (move.x < 0.0f));
         if (flipSprite)
