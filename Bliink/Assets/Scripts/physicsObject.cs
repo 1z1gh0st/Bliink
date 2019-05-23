@@ -10,6 +10,8 @@ public class physicsObject : MonoBehaviour {
     public float minGroundNormalY = .65f;
     public float minWallNormalX = .65f;
 
+    protected float wallDirection;
+
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
@@ -62,11 +64,14 @@ public class physicsObject : MonoBehaviour {
     {
         //yf = yi + (.5)(a)(t^2)
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+
         velocity.x = targetVelocity.x;
 
         grounded = false;
 
         onWall = false;
+
+        wallDirection = 0;
 
         Vector2 deltaPosition = velocity * Time.deltaTime;
 
@@ -109,7 +114,11 @@ public class physicsObject : MonoBehaviour {
                 float projection = Vector2.Dot(velocity, currentNormal);
                 if (projection < 0)
                 {
-                    onWall = true;
+                    if (!grounded)
+                    {
+                        wallDirection = Mathf.Sign(currentNormal.x);
+                        onWall = true;
+                    }
                     velocity = velocity - projection * currentNormal;
                 }
 
